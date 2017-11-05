@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.javahome.model.PersonModel" table="Person">
+
+		<id name="id" column="pid" />
+
+		<property name="pname" column="name" />
+		<property name="pemailId" column="emailId" />
+
+	</class>
+	
+	
+	<query name="personSelectQuery">
+	
+		<![CDATA[from PersonModel as pm where pm.id>=? and pm.id<=?]]>	 
+	
+	</query>
+	
+	<query name="personUpdateQuery">
+	
+		update PersonModel set pname=:name where id=:personId	 
+	
+	</query>
+	
+	<sql-query name="personNativeSelectQuery">
+	
+			<return alias="personModel" class="com.javahome.model.PersonModel"/>
+	
+			<![CDATA[select * from Person where pid>=? and pid<=?]]>
+	
+	</sql-query>
+
+</hibernate-mapping>
